@@ -28,6 +28,9 @@ function calc(num1, num2, op){
             result = parseFloat(num1) - parseFloat(num2);
             break;
         }
+        case '%':
+            result = mod(num1, num2);
+            break;
     }
     return Number(result.toFixed(2));
 }
@@ -37,6 +40,14 @@ function erase(){
     currentInput = '';
     storedValue = '';
     operator = '';
+}
+
+function del(){
+
+}
+
+function mod(a, b){
+    return a - (parseInt(a / b) * b);
 }
 
 function displayOnScreen(num){
