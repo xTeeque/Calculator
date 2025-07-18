@@ -1,0 +1,10 @@
+body {
+    background-color: lightgrey;
+    font-family: Assistant;
+}
+
+.screen {
+    height: 20px;
+    width: 150px;
+    color: black;
+}
