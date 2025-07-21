@@ -11,15 +11,13 @@
     
 
     <div class="calculator">
-
-        <!-- <img id="iphone-img" src="iPhone-frame.png" alt="iPhone calculator"> -->
-
+        <div class="lastCalcScreen"></div>
         <div class="screen"></div>
         
         <div>
             <button class="topBtns" onclick="erase()">AC</button>
             <button class="topBtns" onclick="del()">DEL</button>
-            <button class="topBtns" onclick="mod()">%</button>
+            <button class="topBtns" onclick="operandClicked('%')">%</button>
             <button class="sideBtns" onclick="operandClicked('/')">/</button>
 
         </div>
@@ -47,7 +45,7 @@
 
         <div>
             <button class="numBtns bottomSpace"id='zero' onclick="displayOnScreen(0)" >0</button>
-            <button class="numBtns bottomSpace"onclick="displayOnScreen('.')">.</button>
+            <button class="numBtns bottomSpace"onclick="addDecimal()">.</button>
             <button class="sideBtns bottomSpace" onclick="equal()">=</button>
         </div>
 

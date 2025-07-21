@@ -4,14 +4,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-
-    position: relative;
-    background-image: url('iPhone-frame.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
 }
 
 /*Main div (container)*/
@@ -21,21 +13,35 @@ body {
     justify-content: end;
     align-items: center;
     flex-direction: column;
+    border: 10px solid rgb(52, 61, 70);
     background-color: rgb(0, 0, 0);
-    border-radius: 80px;
-    width: 550px;
-    height: 1200px;
+    border-radius: 50px;
+    width: 320px;
+    height: 550px;
 }
 
 /*Display*/
 
+.lastCalcScreen {
+    color: grey;
+    width: 260px;
+    height: 50px;
+    text-align: right;
+    font-size: 30px;
+    padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .screen {
     color: white;
-    width: 450px;
-    height: 100px;
+    width: 260px;
+    height: 50px;
     text-align: right;
-    font-size: 80px;
+    font-size: 40px;
     padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* Buttons Style (iOS) */
@@ -44,10 +50,10 @@ button {
     border-radius: 50%;
     border-color: transparent;
     color: #FCFCFC;
-    width: 120px;
-    height: 120px;
-    margin: 5px;
-    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+    margin: 05px;
+    font-size: 1.5rem;
 }
 
 .topBtns {
@@ -63,11 +69,10 @@ button {
 }
 
 #zero {
-    border-radius: 360px;
-    width: 240px;
-    
+    border-radius: 240px;
+    width: 135px;
     text-align: left;
-    padding-left: 40px;
+    padding-left: 60px;
 }
 
 .bottomSpace {

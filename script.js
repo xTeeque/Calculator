@@ -1,5 +1,7 @@
+const calcScreen = document.querySelector(".lastCalcScreen");
 const screen = document.querySelector(".screen");
 
+let lastCalc = '';
 let currentInput = '';
 let storedValue = '';
 let operator = '';
@@ -17,7 +19,7 @@ function calc(num1, num2, op){
             else {
                 alert("Can't divide by 0!");
                 erase();
-            }
+            } 
             break;
         }
         case '+':{
@@ -29,7 +31,7 @@ function calc(num1, num2, op){
             break;
         }
         case '%':
-            result = mod(num1, num2);
+            result = num1 - (parseInt(num1 / num2) * num2);
             break;
     }
     return Number(result.toFixed(2));
@@ -37,54 +39,67 @@ function calc(num1, num2, op){
 
 function erase(){
     screen.innerText = '';
+    calcScreen.innerText = '';
+    lastCalc = '';
     currentInput = '';
     storedValue = '';
     operator = '';
 }
 
 function del(){
-
+    currentInput = currentInput.substring(0, currentInput.length - 1);
+    screen.innerText = currentInput;
+    lastCalc = lastCalc.substring(0, lastCalc.length - 1);
 }
 
-function mod(a, b){
-    return a - (parseInt(a / b) * b);
+function addDecimal(){
+    if (!currentInput.includes('.')){
+        currentInput += '.';
+        screen.innerText += '.';
+        lastCalc += '.';
+    }
+}
+
+function calcHistory() {
+    calcScreen.innerText = lastCalc;
+    lastCalc = '';
 }
 
 function displayOnScreen(num){
-        currentInput += num;
-        if (storedValue != ''){
-            screen.innerText += num;
-        }
-        else
-            screen.innerText += num;
+    currentInput += num;
+    screen.innerText += num;
+    lastCalc += num;
 }
 
 function operandClicked(operand){
-    if (currentInput != ''){
-        screen.innerText += ` ${operand} `;
-        if (operator != ''){
-            storedValue = calc(storedValue, currentInput, operator);
-            operator = operand;
-            screen.innerText = `${storedValue} ${operator} `;
-        }
-        else {
-            operator = operand;
-            storedValue = currentInput;
-        }
-        currentInput = '';
+    if (operand === '-' && currentInput === '' && storedValue === '') {
+        currentInput = '-';
+        screen.innerText += '-';
+        lastCalc += '-';
+        return;
     }
-    else {
-        erase();
-        screen.innerText = "Error!";
-    }
+    if (currentInput === '' && storedValue === '') return;
+    screen.innerText += operand;
+    lastCalc += operand;
+    if (storedValue != '' && currentInput != '')
+        storedValue = calc(storedValue, currentInput, operator);
+    else 
+        storedValue = currentInput;
+    currentInput = '';
+    operator = operand;
 }
 
-function equal(){
-    if (currentInput != '')
-        storedValue = calc(storedValue, currentInput, operator);
+function equal() {
+    if (currentInput === '' || operator === '') return; 
+    
+    const result = calc(storedValue, currentInput, operator);
 
-    screen.innerText = storedValue;
-    currentInput = storedValue;
-    storedValue = '';
-    operator = '';
+    if (result !== undefined) {
+        screen.innerText = result;
+        calcScreen.innerText = lastCalc;
+        currentInput = result.toString();
+        storedValue = '';
+        operator = '';
+        lastCalc = currentInput;
+    }
 }
